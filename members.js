@@ -32,7 +32,5 @@ const members = [
     // Tambahkan anggota lain jika diperlukan
   ];
   
-module.exports = {
-    getMembers: () => members,
-  };
+module.exports = members;
   

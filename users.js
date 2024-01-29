@@ -231,7 +231,5 @@ const users = [
     }
   ];
 
-  module.exports = {
-    getUsers: () => users,
-  };
+  module.exports = users;
   
