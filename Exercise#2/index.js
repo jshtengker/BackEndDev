@@ -6,6 +6,7 @@ const members = require('./members')
 const users = require('./users')
 const moment = require('moment');
 
+// middleware Log
 app.use(morgan("dev"));
 
 app.get("/", (req, res) => res.json({
