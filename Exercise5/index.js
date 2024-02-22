@@ -5,8 +5,10 @@ const port = 3000
 const bodyParser = require('body-parser')
 const path = require("path")
 const multer = require("multer")
-const upload = multer({ dest: "Resources" })
-const fs = require("fs")
+const cors = require('cors')
+
+// const upload = multer({ dest: "uploads/" })
+// const fs = require("fs")
 
 // MIDDLEWARE UNTUK REQUEST BODY
 
@@ -31,30 +33,51 @@ const fs = require("fs")
 //     res.redirect('/');
 // })
 
+
 // MIDDLEWARE UNTUK FILE STATIC
 
 // app.use(express.static(path.join(__dirname, "Resources")));
 
+
 // MIDDLEWARE UNTUK UPLOAD FILE
 
-app.post("/upload", upload.single("file"), (req, res) => {
-    const file = req.file;
-    if (file) {
-        const target = path.join(__dirname, "Resources", file.originalname);
-        fs.renameSync(file.path, target)
-        res.send("file berhasil diupload")
-    } else {
-        res.send("file gagal diupload")
-    }
-})
-
-// app.post("/upload", upload.single("file"), (req, res) => {
-//     res.send(req.file);
+// app.post("/upload", upload.single("bg.jpg"), (req, res) => {
+//     const file = req.file;
+//     if (file) {
+//         const target = path.join(__dirname, "Resources", file.originalname);
+//         fs.renameSync(file.path, target)
+//         res.send("file berhasil diupload")
+//     } else {
+//         res.send("file gagal diupload")
+//     }
 // })
 
-// app.use('/', (req, res, next) => {
-//     res.send('This is the home page');
-// });
+// Other method
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb){
+//         cb(null, '/uploads');
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.originalname)
+//         },
+//     });
+
+// const upload = multer({ storage: storage })
+
+
+// app.post('/upload', upload.single('file'), (req, res) => {
+//     res.json(req.file);
+// })
+
+
+// MIDDLEWARE UNTUK PENANGANAN CORS
+
+// penggunaan middleware CORS
+// app.use(cors())
+
+// // data yang akan diakses dari client
+// app.get('/', (req, res) => res.json({data: 'Secret data'}))
 
 
 
